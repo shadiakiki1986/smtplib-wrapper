@@ -1,6 +1,6 @@
 # Description: send email through FFA SMTP
 
-import smtplib, yaml
+import smtplib
 import os
 import email
 from email.mime.multipart import MIMEMultipart
@@ -9,7 +9,7 @@ from email.mime.application import MIMEApplication
 import logging
 from subprocess import Popen, PIPE
 
-logger = logging.getLogger('RiskReconMargin')
+logger = logging.getLogger('smtplib-wrapper')
 
 # From stack overflow (lost url)
 #   config2 = yaml.safe_load(open('config.yml'))

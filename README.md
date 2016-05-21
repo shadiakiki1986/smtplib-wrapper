@@ -20,6 +20,7 @@ To install it run `[sudo] apt-get install postfix` and configure postfix
 After manual install (instructions above)
     apt-get install libyaml-dev mailutils
     cp config-sample.yml config.yml # and edit
+    pew in ENV2 pip install PyYaml
     pew in ENV2 python -m unittest TestMailer
     pew in ENV2 python -m unittest TestConfig
 

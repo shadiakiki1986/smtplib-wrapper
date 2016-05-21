@@ -7,7 +7,4 @@ setup(name='smtplib-wrapper',
       author='Shadi Akiki',
       author_email='shadiakiki1986@gmail.com',
       license='WTFPL',
-      install_requires=[
-          'PyYaml',
-      ],
       zip_safe=False)
