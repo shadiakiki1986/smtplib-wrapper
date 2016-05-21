@@ -1,1 +1,1 @@
-from Mailer import sendemail1, sendemail2
+from smtplibWrapper.Mailer import sendemail1, sendemail2
