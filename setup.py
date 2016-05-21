@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='smtplibWrapper',
-      packages='smtplibWrapper',
+      packages=['smtplibWrapper'],
       version='0.1',
       description='Wrapper functions for smtplib python library',
       url='http://github.com/shadiakiki1986/smtplib-wrapper',
