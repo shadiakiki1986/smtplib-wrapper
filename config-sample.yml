@@ -3,4 +3,5 @@
   "server": "smtp.gmail.com"
   "pwd": "my password"
   # optional: "user": "ffai\\sakiki" (for ffa smtp)
-
+  "test_rcpt1": "s.akiki@ffaprivatebank.com"
+  "test_rcpt2": "shadiakiki1986@gmail.com"

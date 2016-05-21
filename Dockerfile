@@ -16,6 +16,7 @@ COPY . /code
 RUN test -f /code/config.yml
 
 # prepare apt-get
+RUN echo "Acquire::http::Proxy \"http://172.17.0.2:3142\";" | tee /etc/apt/apt.conf.d/01proxy
 RUN apt-get -qq update > /dev/null
 
 # install postfix
@@ -30,7 +31,7 @@ RUN apt-get -qq -y install vim-tiny screen tree > /dev/null
 RUN ln -s /usr/bin/vim.tiny /usr/bin/vim
 
 # python
-RUN apt-get install python-pip python-virtualenv python-dev
+RUN apt-get -qq -y install python-pip python-virtualenv python-dev
 
 # complete postfix config
 RUN postmap /etc/postfix/sasl_passwd
@@ -43,10 +44,7 @@ RUN pip install pew
 RUN pew new -d ENV2
 RUN pew in ENV2 pip install PyYaml
 
-# install
-RUN pew in ENV2 python /code/setup.py install
-
 # Run
 WORKDIR /code
-ENTRYPOINT pew in ENV2 python -m unittest TestMailer TestConfig
-
+ENTRYPOINT service postfix start && service rsyslog start && pew in ENV2 python /code/setup.py install && pew in ENV2 python -m unittest TestMailer TestConfig && sleep 10 && "true"
+# sleep is needed in the entrypoint above so that the postfix queue has time to be flushed
