@@ -11,6 +11,9 @@ To install it run `[sudo] apt-get install postfix` and configure postfix
 # Testing
 Check .travis.yml file.
 It was created with
-    travis env set SMTP_EMAIL    myemail@provider.com
-    travis env set SMTP_PWD      mypassword
-    travis env set SMTP_SERVER   smtp.provider.com
+    [sudo] apt-get install ruby ruby-dev
+    [sudo] gem install travis
+    # https://github.com/travis-ci/travis.rb#encrypt
+    travis encrypt --add SMTP_EMAIL=myemail@provider.com
+    travis encrypt --add SMTP_PWD=mypassword
+    travis encrypt --add SMTP_SERVER=smtp.provider.com
