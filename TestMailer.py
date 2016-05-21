@@ -1,7 +1,7 @@
 # https://docs.python.org/2/library/unittest.html#basic-example
 
 import unittest, os
-import Mailer
+from smtplibWrapper import Mailer
 import tempfile
 import yaml
 
