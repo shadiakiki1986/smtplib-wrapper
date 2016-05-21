@@ -1,0 +1,10 @@
+language: python
+before_install:
+  - apt-get update
+  - apt-get install python-pip python-virtualenv python-dev
+  - apt-get install libyaml-dev mailutils
+  - pip install pew
+  - echo -e "'smtp':\n  'email': '$SMTP_EMAIL'\n  'server': '$SMTP_SERVER'\n  'pwd': '$SMTP_PWD'" > config.yml
+  - pew new -d ENV2
+  - pew in ENV2 python setup.py install
+script: pew in ENV2 python -m unittest TestMailer

@@ -1,0 +1,5 @@
+config.yml
+Mailer.pyc
+TestMailer.pyc
+dist/
+smtplib_wrapper.egg-info/

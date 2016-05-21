@@ -1,5 +1,6 @@
-"email": "shadiakiki1986@gmail.com"
-"server": "smtp.gmail.com"
-"pwd": "my password"
-# optional: "user": "ffai\\sakiki" (for ffa smtp)
+"smtp":
+  "email": "shadiakiki1986@gmail.com"
+  "server": "smtp.gmail.com"
+  "pwd": "my password"
+  # optional: "user": "ffai\\sakiki" (for ffa smtp)
 

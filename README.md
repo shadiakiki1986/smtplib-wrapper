@@ -2,15 +2,15 @@
 wrapper functions of smtplib python library
 
 # Installation
-
     pip install https://github.com/shadiakiki1986/smtplib-wrapper
 
+# Requirements
+The `sendemail2` function requires the `/usr/sbin/sendmail` executable.
+To install it run `[sudo] apt-get install postfix` and configure postfix
+
 # Testing
-
-    git clone https://github.com/shadiakiki1986/smtplib-wrapper
-    cd smtplib-wrapper
-    cp config-sample.yaml config.yaml # and edit
-    pew new ENV
-    pew in ENV python setup.py install
-    pew in ENV python -m unittest TestMailer
-
+Check .travis.yml file.
+It was created with
+    travis env set SMTP_EMAIL    myemail@provider.com
+    travis env set SMTP_PWD      mypassword
+    travis env set SMTP_SERVER   smtp.provider.com
