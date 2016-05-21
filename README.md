@@ -16,11 +16,20 @@ Manual install in pew virtualenv
 The `sendemail2` function requires the `/usr/sbin/sendmail` executable.
 To install it run `[sudo] apt-get install postfix` and configure postfix
 
-# Testing
-After manual install (instructions above)
-    apt-get install libyaml-dev mailutils
-    cp config-sample.yml config.yml # and edit
-    pew in ENV2 pip install PyYaml
-    pew in ENV2 python -m unittest TestMailer
-    pew in ENV2 python -m unittest TestConfig
+# Unit tests
+I have no unit tests
 
+# Integration Testing
+Prepare postfix configs
+    mkdir postfix-configs
+    touch postfix-configs/sasl_passwd # and edit
+    touch postfix-configs/canonical # and edit
+    touch postfix-configs/generic # and edit
+    touch postfix-configs/main.cf # and edit
+
+Prepare smtplib-wrapper config
+    cp config-sample.yml config.yml # and edit
+
+Use dockerfile
+    docker build . -t smtplib-wrapper
+    docker run -it smtplib-wrapper
