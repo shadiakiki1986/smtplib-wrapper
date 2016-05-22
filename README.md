@@ -38,7 +38,7 @@ docker run hello-world
 ```bash
 docker run -d -p 3142:3142 -t clue/apt-cacher
 ```
-* Run built image
+* Run built image (check example below)
  * either just pull the [automated build image](https://hub.docker.com/r/shadiakiki1986/smtplib-wrapper/) and run
 ```bash
 docker run -i -t shadiakiki1986/smtplib-wrapper server port username password email1 email2 (ntlm|login)
@@ -47,6 +47,15 @@ docker run -i -t shadiakiki1986/smtplib-wrapper server port username password em
 ```bash
 docker build --build-arg USE_APT_CACHER -t smtplib-wrapper .
 docker run -i -t smtplib-wrapper server port username password email1 email2 (ntlm|login)
+```
+ * Examples
+  * gmail
+```bash
+docker run -it shadiakiki1986/smtplib-wrapper smtp.gmail.com 587 shadiakiki1986 [my gmail password] shadiakiki1986@gmail.com [a 2nd email] login
+```
+  * MS Outlook Exchange
+```bash
+docker run -it smtplib-wrapper [OWA URL] 587 [OWA username (without prefix "domain\\")] [password (in quotes if special characters)] [OWA email address (e.g. example@owaserver.com)] [2nd email] ntlm
 ```
 
 * check that a test email is received at email1 and email2
