@@ -22,18 +22,6 @@ To install it run `[sudo] apt-get install postfix` and configure postfix
 I have no unit tests
 
 # Integration Testing
-* Prepare postfix configs
-```bash
-mkdir postfix-configs
-touch postfix-configs/sasl_passwd # and edit
-touch postfix-configs/canonical # and edit
-touch postfix-configs/generic # and edit
-touch postfix-configs/main.cf # and edit
-```
-* Prepare smtplib-wrapper config
-```bash
-cp config-sample.yml config.yml # and edit
-```
 * Install docker-engine (requires 64-bit OS)
  * Do not use apt-get install docker
  * Ref: https://docs.docker.com/v1.8/installation/ubuntulinux/
@@ -48,12 +36,17 @@ docker run hello-world
 * apt-cacher
  * https://hub.docker.com/r/clue/apt-cacher/
 ```bash
-docker pull clue/apt-cacher
 docker run -d -p 3142:3142 -t clue/apt-cacher
 ```
-* Use dockerfile
+* Run built image
+ * either just pull the automated build image and run
+```bash
+docker run -i -t shadiakiki1986/smtplib-wrapper server port username password email1 email2 (ntlm|login)
+```
+ * or build dockerfile manually
 ```bash
 docker build -t smtplib-wrapper .
-docker run -it smtplib-wrapper
+docker run -i -t smtplib-wrapper server port username password email1 email2 (ntlm|login)
 ```
-* check that a test email is received at the email set in the config (`test_rcpt1` and `test_rcpt2`)
+
+* check that a test email is received at email1 and email2

@@ -1,0 +1,14 @@
+# Shadi: from http://www.fritzmahnke.com/2010/12/25/use-postfix-to-send-email-through-microsoft-exchange-server/
+relayhost = [$SMTP_SERVER]:$SMTP_PORT
+smtp_sasl_auth_enable = yes
+# below can also use login
+smtp_sasl_mechanism_filter = $SMTP_SASL
+smtp_sasl_security_options = noanonymous
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_generic_maps = hash:/etc/postfix/generic
+#smtp_tls_CAfile = /etc/postfix/cacert.pem
+smtp_use_tls = yes
+canonical_maps = hash:/etc/postfix/canonical
+
+compatibility_level = 2
+inet_protocols = ipv4

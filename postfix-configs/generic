@@ -1,0 +1,2 @@
+root@$SMTP_HOST $SMTP_EMAIL
+root@${SMTP_HOST}.localdomain $SMTP_EMAIL

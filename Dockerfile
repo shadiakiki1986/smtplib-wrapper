@@ -1,20 +1,5 @@
 FROM ubuntu
 
-# configure postfix
-RUN mkdir /etc/postfix
-COPY ./postfix-configs/sasl_passwd /etc/postfix/sasl_passwd
-COPY ./postfix-configs/canonical /etc/postfix/canonical
-COPY ./postfix-configs/generic /etc/postfix/generic
-COPY ./postfix-configs/main.cf /etc/postfix/main.cf
-RUN test -f /etc/postfix/sasl_passwd
-RUN test -f /etc/postfix/canonical
-RUN test -f /etc/postfix/generic
-RUN test -f /etc/postfix/main.cf 
-
-# check config of smtplibe-wrapper
-COPY . /code
-RUN test -f /code/config.yml
-
 # prepare apt-get
 RUN echo "Acquire::http::Proxy \"http://172.17.0.2:3142\";" | tee /etc/apt/apt.conf.d/01proxy
 RUN apt-get -qq update > /dev/null
@@ -33,10 +18,10 @@ RUN ln -s /usr/bin/vim.tiny /usr/bin/vim
 # python
 RUN apt-get -qq -y install python-pip python-virtualenv python-dev
 
+# templating
+RUN apt-get -qq -y install gettext
+
 # complete postfix config
-RUN postmap /etc/postfix/sasl_passwd
-RUN postmap /etc/postfix/canonical
-RUN postmap /etc/postfix/generic
 RUN ln -s /etc/hostname /etc/mailname
 
 # prepare
@@ -45,6 +30,6 @@ RUN pew new -d ENV2
 RUN pew in ENV2 pip install PyYaml
 
 # Run
+COPY . /code
 WORKDIR /code
-ENTRYPOINT service postfix start && service rsyslog start && pew in ENV2 python /code/setup.py install && pew in ENV2 python -m unittest TestMailer TestConfig && sleep 10 && "true"
-# sleep is needed in the entrypoint above so that the postfix queue has time to be flushed
+ENTRYPOINT ["bash","entry.sh"]

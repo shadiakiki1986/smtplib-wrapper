@@ -1,0 +1,2 @@
+# run "sudo postmap /etc/postfix/sasl_passwd" whenever this file is modified
+[$SMTP_SERVER]:$SMTP_PORT    $SMTP_USER:$SMTP_PASS
