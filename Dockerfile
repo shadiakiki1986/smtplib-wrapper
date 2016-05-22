@@ -1,7 +1,7 @@
 FROM ubuntu
 
 # prepare apt-get
-RUN echo "Acquire::http::Proxy \"http://172.17.0.2:3142\";" | tee /etc/apt/apt.conf.d/01proxy
+RUN if [ ! -z "$USE_APT_CACHER" ]; then echo "Acquire::http::Proxy \"http://172.17.0.2:3142\";" | tee /etc/apt/apt.conf.d/01proxy; fi
 RUN apt-get -qq update > /dev/null
 
 # install postfix

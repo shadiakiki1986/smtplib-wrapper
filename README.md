@@ -33,7 +33,7 @@ sudo usermod -aG docker ubuntu
 # test
 docker run hello-world
 ```
-* apt-cacher
+* If desired, can run `apt-cacher`
  * https://hub.docker.com/r/clue/apt-cacher/
 ```bash
 docker run -d -p 3142:3142 -t clue/apt-cacher
@@ -43,9 +43,9 @@ docker run -d -p 3142:3142 -t clue/apt-cacher
 ```bash
 docker run -i -t shadiakiki1986/smtplib-wrapper server port username password email1 email2 (ntlm|login)
 ```
- * or build dockerfile manually
+ * or build dockerfile manually (skip `--build-arg USE_APT_CACHER` if apt-cacher not running)
 ```bash
-docker build -t smtplib-wrapper .
+docker build --build-arg USE_APT_CACHER -t smtplib-wrapper .
 docker run -i -t smtplib-wrapper server port username password email1 email2 (ntlm|login)
 ```
 
